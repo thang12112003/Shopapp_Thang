@@ -1,0 +1,46 @@
+<app-header></app-header>
+<div class="container">
+  <h1>Order Details</h1>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Order Information</h3>
+      <p><strong>Order ID:</strong> {{ orderResponse.id }}</p>
+      <p><strong>User ID:</strong> {{ orderResponse.user_id }}</p>
+      <p><strong>Full Name:</strong> {{ orderResponse.fullname }}</p>
+      <p><strong>Phone Number:</strong> {{ orderResponse.phone_number }}</p>
+      <p><strong>Email:</strong> {{ orderResponse.email }}</p>
+      <p><strong>Address:</strong> {{ orderResponse.address }}</p>
+      <p><strong>Note:</strong> {{ orderResponse.note }}</p>
+      <p><strong>Order Date:</strong> {{ orderResponse.order_date | date }}</p>
+      <p><strong>Status:</strong> {{ orderResponse.status }}</p>
+  </div>
+  <h3>Order Details</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      @for(order_detail of orderResponse.order_details;
+        track order_detail.product.name) {
+          <tr>
+            <td>{{ order_detail.product.name }}</td>
+            <td>
+              <p>{{order_detail.product.price}}</p>
+            <td>
+              <p>{{order_detail.numberOfProducts}}</p>
+            </td>
+          </tr>
+      }
+    </tbody>
+  </table>
+  <div class="total">
+    <h4>Total</h4><p> ${{ orderResponse.total_money | number: '1.0-2' }}</p>
+  </div>
+</div>
+

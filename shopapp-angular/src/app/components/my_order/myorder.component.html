@@ -1,0 +1,37 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <!-- Orders table -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User ID</th>
+        <th>Full Name</th>
+        <th>Phone Number</th>
+        <th>Address</th>
+        <th>Note</th>
+        <th>Order Date</th>
+        <th>Status</th>
+        <th>Total Money</th>
+        <th>Actions</th> <!-- Cột cho nút xem chi tiết -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders; trackBy: trackByOrderId">
+        <td>{{ order.id }}</td>
+        <td>{{ order.user.id }}</td>
+        <td>{{ order.user.fullName }}</td>
+        <td>{{ order.user.phoneNumber }}</td>
+        <td>{{ order.user.address }}</td>
+        <td>{{ order.note }}</td>
+        <td>{{ order.orderDate ? (order.orderDate | date) : 'N/A' }}</td>
+        <td>{{ order.status }}</td>
+        <td>{{ order.totalMoney | number: '1.0-2' }}</td> <!-- Làm tròn số tiền -->
+        <td>
+          <button (click)="viewOrderDetails(order.id)">Xem Chi Tiết</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-footer></app-footer>
